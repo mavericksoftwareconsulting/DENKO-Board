@@ -6,20 +6,20 @@ This project is built and runs on Nodejs.  Please verify you have installed Node
 Before you can begin to use Denko Board, you will want to set some values in the `ServerSide\credentials.json` file.
 
 1. latitude
-..* The latitude of your office for the weather api to use.
+  * The latitude of your office for the weather api to use.
 2. longitude
-..* The longitude of your office for the weather api to use.
+  * The longitude of your office for the weather api to use.
 3. musicSrc
-..* The location of the Mopidy "Now Playing" page.
+  * The location of the Mopidy "Now Playing" page.
 4. adminCredentials
-..1. username
-..* The username to long in as.
-..2. password
-..* The password to long in with.
-..3. securityQuestion
-..* The security question used for password resets.
-..4. securityAnswer
-..* The answer to the security question.
+  1. username
+   * The username to long in as.
+  2. password
+   * The password to long in with.
+  3. securityQuestion
+   * The security question used for password resets.
+  4. securityAnswer
+   * The answer to the security question.
 
 After these values are set, you may run `nodejs denkoServer.js` in the `ServerSide` folder or `startDenko.sh` in the main directory on Linux.
 
