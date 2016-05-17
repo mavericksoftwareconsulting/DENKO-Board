@@ -1,18 +1,6 @@
 [
     {
-        "title": "Denko Board is Alive!",
-        "value": "Special thanks to Traitor Bic for starting. DenkoBoard is brought to you by Kale, Hype, and Dank Memes"
-    },
-    {
-        "title": "Any Suggestions?",
-        "value": "Tell Kale about any bugs or improvements."
-    },
-    {
-        "title": "Special Note",
-        "value": "Rustle Button still works through the iframe, feel free to use it on your local machine!"
-    },
-    {
-        "title": "Connect to Denko Board Locally!",
-        "value": "go to 192.168.220.152:1337 to connect!!"
+        "title": "Hello World",
+        "value": "Announcements are displayed here"
     }
 ]
