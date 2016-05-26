@@ -29,30 +29,32 @@
 			<h1 id="Banner">{{banner[index].value}}</h1>
 		</section>
 		<section id="time" class="panel" ng-Controller="titleController">
-			<h1 ng-init="tick()">{{clock | date:'h:mm'}}</h1>
+			<h1 ng-init="tick()">{{clock | date:'h:mm:ss'}}</h1>
 		</section>
 	</div>
-    <section id="info"  class="col-xs-12 col-md-6 col-lg-4 col-lg-push-4  ng-scope" ng-controller="infoController">
+	<!--col-lg-pull-4 -->
+	<section id="info"  class="col-xs-12 col-md-6 col-lg-4  ng-scope" ng-controller="infoController">
         <section class='inner' id="announcements">
 		<h1 style="text-align:center">Announcements</h1>
             <ul>
                 <li ng-repeat="announcement in announcements">
-                    <h3>{{announcement.title}}</h3>
-                    <p>{{announcement.value}}</p>
+                    <h2 style="text-align:center">{{announcement.title}}</h3>
+                    <p style="text-align:center" class='text-smaller'>{{announcement.value}}</p>
                 </li>
             </ul>
         </section>
         <section class='inner' id="contactInformation">
             <h2 style="text-align:center">Contact Information</h2>
             <ul>
-                <li ng-repeat="contact in contacts">
-                    <span>{{contact.title}}</span>
-                    <span>{{contact.value}}</span>
+                <li style="text-align:center" ng-repeat="contact in contacts">
+                    <span class='text-smaller'>{{contact.title}}</span>
+                    <span class='text-smaller'>{{contact.value}}</span>
                 </li>
             </ul>
         </section>
     </section>
-	<section id="media" class="col-xs-12 col-md-6 col-lg-4 col-lg-pull-4 panel">
+	<!--col-lg-push-4-->
+    <section id="media" class="col-xs-12 col-md-6 col-lg-4 panel">
 		<section class='inner' id="musicList"  ng-controller="musicController">
 		<h1 style="text-align:center">Music</h1>
 			<div id="frameContainer"> 

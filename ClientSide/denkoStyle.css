@@ -1,18 +1,10 @@
 body {
-	background-color: #34495E;
+	background-color: #000000;
 }
 
 ul {
 	color: #1a1a1a;
     list-style-type: none;
-}
-
-section  .inner{
-	color: #1a1a1a;
-	background-color: #FFF;
-	border: 3px solid #FFF;
-	border-radius: 3px;
-	margin-bottom: 10px;
 }
 
 img {
@@ -26,8 +18,21 @@ h4 {
 marquee {
 	font-size: 200%;
 }
+
 .left {
 	float: left;
+}
+
+p, h1, h2, h3, h4, span, li {
+	color: #FFFFFF;
+}
+
+.text {
+	font-size: 150%;
+}
+
+.text-smaller {
+	font-size: 125%
 }
 
 iframe {
@@ -48,6 +53,10 @@ iframe {
 
 .weatherImage {
 	max-height: 100px;
+}
+
+.panel {
+	background-color: #000000;
 }
 
 [type=info] {
@@ -71,10 +80,10 @@ iframe {
 }
 
 .centered {
-position: absolute;
-top: 0;
-bottom: 0;
-margin:auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin:auto;
 }
 
 #time{
