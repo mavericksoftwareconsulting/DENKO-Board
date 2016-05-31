@@ -36,21 +36,25 @@
 	<section id="info"  class="col-xs-12 col-md-6 col-lg-4  ng-scope" ng-controller="infoController">
         <section class='inner' id="announcements">
 		<h1 style="text-align:center">Announcements</h1>
-            <ul>
-                <li ng-repeat="announcement in announcements">
+            <!--<ul>
+                <li ng-repeat="announcement in announcements">-->
+				<div ng-repeat="announcement in announcements">
                     <h2 style="text-align:center">{{announcement.title}}</h3>
                     <p style="text-align:center" class='text-smaller'>{{announcement.value}}</p>
-                </li>
-            </ul>
+				</div>
+                <!--</li>
+            </ul>-->
         </section>
         <section class='inner' id="contactInformation">
             <h2 style="text-align:center">Contact Information</h2>
-            <ul>
-                <li style="text-align:center" ng-repeat="contact in contacts">
+            <!--<ul>
+                <li style="text-align:center" ng-repeat="contact in contacts">-->
+				<div style="text-align:center" ng-repeat="contact in contacts">
                     <span class='text-smaller'>{{contact.title}}</span>
                     <span class='text-smaller'>{{contact.value}}</span>
-                </li>
-            </ul>
+				</div>
+                <!--</li>
+            </ul>-->
         </section>
     </section>
 	<!--col-lg-push-4-->
