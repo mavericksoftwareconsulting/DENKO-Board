@@ -10,6 +10,7 @@ var request = require('request');
 var FeedParser = require('feedparser');
 var security = require('./NicksJSSecurityTools');
 var util = require('util');
+require('log-timestamp')
 
 //Setup server
 var app = express();
@@ -232,13 +233,13 @@ var getWeather = function(startupCallback){
             startupCallback();
         }
     });
-    //Schedules weather refresh every 5 minutes
+    //Schedules weather refresh every 15 minutes
 	if(firstLoad){
 		firstLoad = false;
-		setTimeout(getWeather, 7.5 * 60000);
+		setTimeout(getWeather, 15 * 600000);
 	}
     else{
-		setTimeout(getWeather, 5 * 60000);
+		setTimeout(getWeather, 15 * 600000);
 	}
 };
 
