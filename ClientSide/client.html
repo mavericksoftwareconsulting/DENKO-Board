@@ -29,7 +29,7 @@
 			<h1 id="Banner">{{banner[index].value}}</h1>
 		</section>
 		<section id="time" class="panel" ng-Controller="titleController">
-			<h1 ng-init="tick()">{{clock | date:'h:mm:ss'}}</h1>
+			<h1 ng-init="tick()">{{clock | date:'MMM dd h:mm:ss'}}</h1>
 		</section>
 	</div>
 	<!--col-lg-pull-4 -->
@@ -107,6 +107,7 @@
 					</li>
 				</div>
 			</ul>
+			<div><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></div>
 		</section>
 	</section>
     <section id="news" class="hidden-xs col-md-12 panel" ng-controller="newsController">
