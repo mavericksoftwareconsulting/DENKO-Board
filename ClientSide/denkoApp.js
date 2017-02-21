@@ -172,6 +172,7 @@
             if(data && data.length){
                 $scope.news = data;
                 $scope.$apply();
+				//updateMarqueeAmplitude();
                 console.log('Updated news has been received: ' + data.length);
             } else {
                 console.log('Updated news object is empty');

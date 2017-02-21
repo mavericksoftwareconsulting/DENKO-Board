@@ -18,9 +18,148 @@
     <script src="./socket.io/socket.io.js"></script>
     <script>
         var socket = io.connect(window.location.origin);
+		
+		function getBusTimes() {	
+			metroTransitTimes();
+			
+			setInterval(function(){
+				umnBusTimes("http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=umn-twin&r=university&s=mondhall", "gold122");
+				umnBusTimes("http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=umn-twin&r=connector&s=bleghall", "gold123");
+				umnBusTimes("http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=umn-twin&r=4thst&s=bleghall", "gold121");
+			}, 30000);
+			
+		}
+		
+		function metroTransitTimes(){
+		
+			//metro transit bus schedules
+			setInterval(function(){
+				$.getJSON('http://svc.metrotransit.org/NexTrip/56001?format=json', function(data){
+					document.getElementById("green1").innerHTML = data[0].DepartureText;
+					document.getElementById("green2").innerHTML = data[1].DepartureText;
+					});
+				}, 30000);
+			setInterval(function(){
+				$.getJSON('http://svc.metrotransit.org/NexTrip/13223?format=json', function(data){
+					$depart = data[0].Route + data[0].Terminal + " " + data[0].DepartureText;
+					$depart2 = data[1].Route + data[1].Terminal + " " + data[1].DepartureText;
+					document.getElementById("three1").innerHTML = $depart;
+					document.getElementById("three2").innerHTML = $depart2;
+				});
+				}, 30000);
+			setInterval(function(){	
+				$.getJSON('http://svc.metrotransit.org/NexTrip/13221?format=json', function(data){
+					$depart = data[0].Route + data[0].Terminal + " " + data[0].DepartureText;
+					$depart2 = data[1].Route + data[1].Terminal + " " + data[1].DepartureText;
+					document.getElementById("three3").innerHTML = $depart;
+					document.getElementById("three4").innerHTML = $depart2;
+				});
+				}, 30000);		
+		}
+		
+		function umnBusTimes(url, id){
+			
+			//umn bus times
+			var xhttp = new XMLHttpRequest();
+			var xmlDoc, i, x, first;
+			xhttp.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200) {
+					xmlDoc = this.responseXML;
+					x = xmlDoc.getElementsByTagName("prediction");
+					first = x[1].getAttribute('minutes');
+					if(first == "0"){
+						document.getElementById(id+"_1").innerHTML = "Due";
+					}
+					else{
+						document.getElementById(id+"_1").innerHTML = first + " Min";
+					}
+					document.getElementById(id+"_2").innerHTML = x[2].getAttribute('minutes') + " Min";
+				}
+			}
+			xhttp.open("GET", url, true);
+			xhttp.send();			
+			
+		}
+		
+		//marquee replacement code 
+		//courtesy of: https://www.jonathan-petitcolas.com/2013/05/06/simulate-marquee-tag-in-css-and-javascript.html
+		//**with some changes**
+		
+		//find the length of the str provided
+		function getStringWidth(str) {
+
+			var node = document.createElement("span");
+			var textNode = document.createTextNode(str);
+			node.style.visibility = "hidden";
+			node.appendChild(textNode);
+			var temp = document.getElementById("tester");
+			temp.appendChild(node);
+			
+			var textWidth = node.offsetWidth;
+			temp.removeChild(node);
+			return textWidth;
+		}
+		
+		//retrieve animation keyframes declaration in css
+		//modified to access only the denkoStyle.css stylesheet
+		function getAnimationRule() {
+			var KEYFRAME_RULE = window.CSSRule.WEBKIT_KEYFRAMES_RULE ||
+				window.CSSRule.MOZ_KEYFRAMES_RULE ||
+				window.CSSRule.KEYFRAMES_RULE;
+			
+			var stylesheets = document.styleSheets;
+			//var styleName = "denkoStyle";
+			
+			for (var i = 0 ; i < stylesheets.length ; i++) {	
+				var rules = stylesheets[i].cssRules;
+				for (var j = 0 ; j < rules.length ; j++) {
+					var rule = rules[j];
+					if (rule.type == KEYFRAME_RULE && rule.name == "marquee") {
+						return rule;
+					}
+				}
+			}
+		}
+		
+		function updateMarqueeAmplitude() {
+		
+			var animationName = "marquee";
+			var element = document.querySelector(".marquee");
+			var marqueeRule = getAnimationRule();
+			
+			if (null == marqueeRule) {
+				alert("what happened");
+				return;
+			}
+			
+			// remove the old animation (if any)
+			element.style.WebkitAnimationName = "none";
+			
+			var spanText = document.getElementById("marq");
+			var textWidth = getStringWidth(spanText.innerText);
+			alert(element.offsetWidth);
+			alert(textWidth);
+			// update the values of our keyframe animation
+			marqueeRule.deleteRule("0%");
+			marqueeRule.deleteRule("100%");
+			marqueeRule.insertRule('0% { text-indent: ' + element.offsetWidth + 'px; }');
+			marqueeRule.insertRule('100% { text-indent: ' + -textWidth + 'px; }');
+			
+			// re-assign the animation (to make it run)
+			element.style.webkitAnimationName = animationName;
+		}
+		
+		//var length = getStringWidth();
+		window.onload = function(){
+			getBusTimes();
+			
+			//updateMarqueeAmplitude();
+		}
+		
+		
     </script>
 </head>
-<body class="container-fluid" style="height: 100%">
+<body id="bodyy" class="container-fluid" style="height: 100%">
 	<div id="top banner" style="height: 10%">
 		<section class='title  col-lg-4' ng-click="test()" id="title" ng-init="tick()" ng-controller='titleController'>
 			<img src="Images/Favicons/MSC_logo_horizontal.png">
@@ -29,7 +168,7 @@
 			<h1 id="Banner">{{banner[index].value}}</h1>
 		</section>
 		<section id="time" class="panel" ng-Controller="titleController">
-			<h1 ng-init="tick()">{{clock | date:'MMM dd h:mm:ss'}}</h1>
+			<h1 ng-init="tick()">{{clock | date:'MMM dd h:mm'}}</h1>
 		</section>
 	</div>
 	<!--col-lg-pull-4 -->
@@ -45,6 +184,7 @@
                 <!--</li>
             </ul>-->
         </section>
+		
         <section class='inner' id="contactInformation">
             <h2 style="text-align:center">Contact Information</h2>
             <!--<ul>
@@ -56,6 +196,38 @@
                 <!--</li>
             </ul>-->
         </section>
+		
+		<h1 style="text-align:center">Bus/Train Departure Times</h1>
+		<section class="inner col-xs-12 col-md-6 col-lg-4" id="metroTransit">
+			<p style="color:green; text-align:center"><u>EastBound Green Line - WestBank</u></p>
+			<p style="color:green; text-align:center" id='green1'></p>
+			<p style="color:green; text-align:center" id='green2'></p>
+			<br>
+			<p style="color: gold; text-align:center"><u>121 Campus Connector - Blegan Hall</u></p>
+			<p style="color:gold; text-align:center" id='gold121_1'></p>
+			<p style="color:gold; text-align:center" id='gold121_2'></p>
+		</section>
+		
+		<section class="inner col-xs-12 col-md-6 col-lg-4" id="metroTransit2">
+			<p style="color:hotpink; text-align:center"><u>2 & 3 EastBound WestBank Blegan Hall</u></p>
+			<p style="color:hotpink; text-align:center" id='three1'></p>
+			<p style="color:hotpink; text-align:center" id='three2'></p>
+			<br>
+			<p style="color: gold; text-align:center"><u>122 University Circulator - Mondale Hall</u></p>
+			<p style="color:gold; text-align:center" id='gold122_1'></p>
+			<p style="color:gold; text-align:center" id='gold122_2'></p>
+		</section>
+		
+		<section class="inner col-lg-4" id="metroTransit3">
+			<p style="color: hotpink; text-align:center"><u>2 & 3 EastBound WestBank (by train station)</u></p>
+			<p style="color: hotpink; text-align:center" id='three3'></p>
+			<p style="color: hotpink; text-align:center" id='three4'></p>	
+			
+			<p style="color: gold; text-align:center"><u>123 4th St. Circulator - Blegan Hall</u></p>
+			<p style="color:gold; text-align:center" id='gold123_1'></p>
+			<p style="color:gold; text-align:center" id='gold123_2'></p>
+		</section>
+	
     </section>
 	<!--col-lg-push-4-->
     <section id="media" class="col-xs-12 col-md-6 col-lg-4 panel">
@@ -65,8 +237,11 @@
 				<iframe ng-src="{{trustMusicSrc(musicSrc)}}"></iframe>
 			</div>
 		</section>
+		<section class='inner' id='umnBus'>
+			
+		</section>
 	</section>
-    <section id="weather" class="col-xs-12 col-lg-4 panel">
+    <section id="weather" class="col-xs-12 col-md-4 panel">
 		<section class='inner' ng-init="alternate()" ng-controller="weatherController">
 			<h1 style="text-align:center">Weather Forecast</h1>
 			<ul class="container-fluid" ng-show="weather.currently">
@@ -110,8 +285,10 @@
 			<div><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></div>
 		</section>
 	</section>
+	
     <section id="news" class="hidden-xs col-md-12 panel" ng-controller="newsController">
-        <marquee><span ng-repeat="temp in news">{{temp.title}} - {{temp.source}} | </span></marquee>
+        <p class="marquee" id="marq"><span id="marqueeSpan" ng-repeat="temp in news">{{temp.title}} - {{temp.source}} | </span></p>
     </section>
+	<div id="tester"></div>
 </body>
 </html>

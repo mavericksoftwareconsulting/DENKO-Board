@@ -12,8 +12,8 @@ Before you can begin to use Denko Board, you will want to set some values in the
 3. musicSrc
   * The location of the Mopidy "Now Playing" page.
 4. adminCredentials
- 1. username - The username to long in as.
- 2. password - The password to long in with.
+ 1. username - The username to login as.
+ 2. password - The password to login with.
  3. securityQuestion - The security question used for password resets.
  4. securityAnswer - The answer to the security question.
 
