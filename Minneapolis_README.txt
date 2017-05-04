@@ -57,7 +57,7 @@ both the raspberry pi's have been outfitted with a few lines of code (found in e
 	
 	
 	
-Denko: 192.168.140.174:1337
-		admin: 192.168.140.174:1337/admin
-Iris: 192.168.140.110:6680/iris
+Denko: 192.168.140.123:1337
+		admin: 192.168.140.123:1337/admin
+Iris: 192.168.140.125:6680/iris
 	
