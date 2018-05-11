@@ -491,7 +491,6 @@ var getCredentials = function(startupCallback){
     });
 };
 
-
 var setCredentials = function(credentials){
     var dataToWrite = {
         forecastApiKey: weatherAdminEdit.forecastApiKey,
@@ -558,6 +557,7 @@ var setFeeds = function(feeds){
         }
     });
 };
+
 //Handles the initial server setup before starting
 var initializeServer = function(functions, startServer) {
     var progress = 0;
@@ -602,7 +602,6 @@ var initializeServer = function(functions, startServer) {
 /*
  Websocket stuff
  */
-
 
 //Socket routes
 io.on('connection', function (socket) {
