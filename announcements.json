@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Need to add the printer",
+        "value": "Instructions are in the Ames Slack channel"
+    },
+    {
+        "title": "DSU",
+        "value": "Needs to go out every day, Please do not forget."
+    },
+    {
+        "title": "Cant access VDI?",
+        "value": "Remote desktop to MKTRDS01 to use VDI"
+    },
+    {
+        "title": "Shared Spotify Playlist",
+        "value": "AMS Default"
+    }
+]
