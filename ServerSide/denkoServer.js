@@ -211,7 +211,7 @@ var getWeather = function(startupCallback) {
 
         weather.daily = [];
         if (data.daily) {
-            console.log("Daily data recieved");
+            console.log("Daily data received");
             for (var i = 1, j = 0; i < data.daily.data.length && j < daysToShow - 1; i++) {
                 var daily = data.daily.data[i];
                 var dailyDate = new Date(daily.time * 1000);
@@ -293,7 +293,7 @@ var getWordOfTheDay = function(startupCallback) {
             wordOfDay.word = data.word;
             wordOfDay.def = data.definitions[0].text;
             wordOfDay.pos = data.definitions[0].partOfSpeech;
-	    console.log(new Date().toLocaleTimeString() + ' | Word of the day recieved - ' + wordOfDay.word);
+	    console.log(new Date().toLocaleTimeString() + ' | Word of the day received - ' + wordOfDay.word);
             io.emit('receiveWordOfDay', wordOfDay);
         }
     });
