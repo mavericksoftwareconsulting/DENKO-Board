@@ -1,7 +1,7 @@
 {
   "name": "Denko-Board",
   "description": "A multi-purpose information app for Maverick",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Nick Wilson <nawilson9@gmail.com>",
   "license": "UNLICENSED",
   "contributors": [
@@ -16,6 +16,18 @@
     {
       "name": "Josh Engelhardt",
       "email": "mrjoshte@iastate.edu"
+    },
+    {
+      "name": "Justin Shaver",
+      "email": "jgshaver2@gmail.com"
+    },
+    {
+      "name": "Ethan Sabado",
+      "email": ""
+    },
+    {
+      "name": "Chandler Davis",
+      "email": "chandlerfdavis@gmail.com"
     }
   ],
   "repository": {

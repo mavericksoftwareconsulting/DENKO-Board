@@ -3,6 +3,5 @@ RUN mkdir -p /home/nodejs/app
 WORKDIR /home/nodejs/app
 COPY . /home/nodejs/app
 RUN npm install
-WORKDIR /ServerSide
-CMD node denkoServer.js
+CMD ./startDenko.sh
 EXPOSE 1337
