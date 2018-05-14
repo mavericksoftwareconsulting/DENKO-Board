@@ -76,5 +76,6 @@ module.exports = {
                 }
             }
         }
+        console.log("Leaving method");
     }
 };
