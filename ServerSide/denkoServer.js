@@ -650,11 +650,11 @@ var initializeServer = function(functions, startServer) {
         //Starts the Express server
         server = app.listen(port, function() {
             //Server started
-            console.log('Business-Board web server running on port ' + port);
+            console.log('DenkoBoard web server running on port ' + port);
 
             //Start socket server
             io.listen(server);
-            console.log('Business-Board socket server running on port ' + port);
+            console.log('DenkoBoard socket server running on port ' + port);
         });
     };
     initializeServer(functions, start);
