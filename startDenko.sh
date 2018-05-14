@@ -1,2 +1,2 @@
-cd /home/pi/denko/ServerSide
+cd ServerSide
 nodejs denkoServer.js
