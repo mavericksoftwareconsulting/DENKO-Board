@@ -63,19 +63,12 @@ module.exports = {
     },
 
     socketDisconnect: function(socket){
-        count = 1;
-        console.log("Beginning socket.disconnect \n if(clients.length)");
         if(clients.length) {
-            console.log("Inside if. Trying to access forloop");
             for (var i = 0; i < clients.length; i++) {
-                console.log("Loop iteration: " + count);
-                console.log("Attempting if-statement");
                 if (socket.handshake.address.indexOf(clients[i].ipAddress) >= 0) {
-                    console.log("clients[i].connections--");
                     clients[i].connections--;
                 }
             }
         }
-        console.log("Leaving method");
     }
 };

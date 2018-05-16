@@ -785,9 +785,7 @@ io.on('connection', function(socket) {
     //A user has disconnected
     socket.on('disconnect', function(data) {
         security.socketDisconnect(socket);
-        console.log("It's probably gonna break");
-        console.log(new Date().toLocaleTimeString() + ' | A user has disconnected. Total users: null');// + io.engine.clientsCount);
-        console.log("It didn't break?");
+        console.log(new Date().toLocaleTimeString() + ' | A user has disconnected. Total users: ' + io.engine.clientsCount);
     });
 
     //Socket functions
